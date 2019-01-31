@@ -1,0 +1,16 @@
+{
+  "name": "pegjs",
+  "version": "1.0.0",
+  "description": "testParser",
+  "main": "parser.js",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "save": "^2.3.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "rousspb",
+  "license": "ISC"
+}

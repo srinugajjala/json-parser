@@ -1,0 +1,48 @@
+{
+  "useremailaddress": "srao@homeaway.com",
+  "migrations": [
+    {
+      "sources": [
+        {
+          "platform": "mysql",
+          "server": "rptdb02.aus1.homeaway.live",
+          "database": "DW",
+          "table": "tabll_x",
+          "login": "datapull_ds",
+          "awsenv": "prod",
+          "vaultenv": "prod",
+          "alias": "demo1"
+        },
+        {
+          "platform": "s3",
+          "s3path": "ha-prod-data-datatools-us-east-1/srao/test/daily_listing_and_image_uuids",
+          "fileformat": "parquet",
+          "alias": "demo2"
+        }
+      ],
+      "destination": {
+        "platform": "mongodb",
+        "awsenv": "stage",
+        "cluster": "stage-mongodb-productivityengineering.service.us-east-1-vpc-35196a52.consul",
+        "replicaset": "stage-mongodb-productivityengineering",
+        "authenticationdatabase": "pitchtrackr",
+        "database": "pitchtrackr",
+        "collection": "demotracker",
+        "login": "pitchtrackr",
+        "password": "dsds@9I8"
+      },
+      "sql": {
+        "query": "SELECT demo1.*,demo2.* from demo1 JOIN demo2 ON demo1.id = demo2.id"
+      }
+    }
+  ],
+  "cluster": {
+    "pipelinename": "content-data-pipeline1",
+    "awsenv": "prod",
+    "portfolio": "Data Science",
+    "product": "Data Science - Shared Function",
+    "ec2instanceprofile": "datapull",
+    "ComponentInfo": "6dc8d84e-45bb-4b48-9648-04779218881b",
+    "terminateclusterafterexecution": "false"
+  }
+}
